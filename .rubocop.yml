@@ -1,0 +1,21 @@
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+  - bin/*
+  - db/**/*
+  - node_modules/**/*
+
+Metrics/LineLength:
+  Max: 100
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StderrPuts:
+  Enabled: false
