@@ -13,17 +13,26 @@ module AdminCredentials
     private
 
     def admin_credential(credential_name)
-      Rails.application.credentials.dig(Rails.env.to_sym, :"admin_#{credential_name}").tap do |credential|
-        if credential.blank?
-          raise <<~ERR
-            Admin #{credential_name} is not set. Hint: run `bin/rails credentials:edit` and set:
+      credential_key = :"admin_#{credential_name}"
 
-            #{Rails.env}:
-              admin_#{credential_name}:
-
-          ERR
-        end
+      credential = ENV.fetch(credential_key.upcase.to_s) do
+        Rails.application.credentials.dig(Rails.env.to_sym, credential_key)
       end
+
+      if credential.blank?
+        raise <<~ERR
+          Admin #{credential_name} is not set. Hints:
+
+          - run `bin/rails credentials:edit` and set:
+
+          #{Rails.env}:
+            admin_#{credential_name}:
+
+          - set #{credential_key.upcase} environment variable
+        ERR
+      end
+
+      credential
     end
   end
 end
