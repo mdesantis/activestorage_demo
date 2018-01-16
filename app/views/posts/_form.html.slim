@@ -14,5 +14,7 @@
     = f.text_area :body
   .field
     = f.label :gallery_images
+    ul
+      = render @post.gallery_images
     = f.file_field :gallery_images, multiple: true, direct_upload: false
   .actions = f.submit
