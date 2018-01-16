@@ -15,6 +15,6 @@
   .field
     = f.label :gallery_images
     ul
-      = render @post.gallery_images
-    = f.file_field :gallery_images, multiple: true, direct_upload: false
+      = render @post.gallery_images, delete_link: true
+    = f.file_field :gallery_images, multiple: true, direct_upload: true
   .actions = f.submit

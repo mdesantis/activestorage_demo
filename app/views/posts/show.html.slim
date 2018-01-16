@@ -6,6 +6,9 @@ p
 p
   strong Body:
   = @post.body
+p
+  strong Gallery images:
+  = render @post.gallery_images
 
 => link_to 'Edit', edit_post_path(@post)
 '|
