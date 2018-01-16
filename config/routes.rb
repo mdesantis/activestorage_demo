@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :posts
 
   # destroy route for attachments and blobs - GET is defined in activestorage/config/routes.rb
-  delete '/rails/active_storage/blobs/:signed_id/*filename' => 'blobs#destroy', internal: true
+  delete '/rails/active_storage/blobs/:signed_id/*filename' => 'blobs#destroy'
 end
