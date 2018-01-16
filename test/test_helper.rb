@@ -7,11 +7,15 @@ class ActiveSupport::TestCase # rubocop:disable Style/ClassAndModuleChildren
 
   # Add more helper methods to be used by all tests here...
 
-  def set_admin_auth_headers
-    username = ApplicationController.admin_username
-    password = ApplicationController.admin_password
-    encoded_credentials = Base64.encode64("#{username}:#{password}")
+  def admin_credentials
+    { username: ApplicationController.admin_username, password: ApplicationController.admin_password }
+  end
 
-    @auth_headers = { 'Authorization' => "Basic #{encoded_credentials}" }
+  def admin_auth_headers
+    credentials = ActionController::HttpAuthentication::Basic.encode_credentials(
+      admin_credentials[:username], admin_credentials[:password]
+    )
+
+    { 'Authorization' => credentials }
   end
 end

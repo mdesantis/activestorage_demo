@@ -2,7 +2,7 @@ require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    set_admin_auth_headers
+    @auth_headers = admin_auth_headers
     @post = posts(:one)
   end
 
