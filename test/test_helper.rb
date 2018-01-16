@@ -11,12 +11,6 @@ class ActiveSupport::TestCase # rubocop:disable Style/ClassAndModuleChildren
 
   delegate :admin_username, :admin_password, to: :class
 
-  # def admin_username
-  #   self.class.admin_username
-  # end
-  #   { username: ApplicationController.admin_username, password: ApplicationController.admin_password }
-  # end
-
   def admin_auth_headers
     credentials = ActionController::HttpAuthentication::Basic.encode_credentials(
       admin_username, admin_password

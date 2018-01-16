@@ -6,6 +6,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @post = posts(:one)
   end
 
+  teardown do
+    FileUtils.rm_r Dir.glob Rails.root.join('tmp', 'storage', '*')
+  end
+
   test 'should get index' do
     get posts_url
     assert_response :success
@@ -18,10 +22,19 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create post' do
     assert_difference('Post.count') do
-      post posts_url, params: { post: { body: @post.body, title: @post.title } }, headers: @auth_headers
+      gallery_images = [
+        fixture_file_upload('files/image.jpg')
+      ]
+      post posts_url,
+           params: { post: { body: @post.body, title: @post.title, gallery_images: gallery_images } },
+           headers: @auth_headers
     end
 
-    assert_redirected_to post_url(Post.last)
+    post = Post.last
+
+    assert_not_empty post.gallery_images
+
+    assert_redirected_to post_url(post)
   end
 
   test 'should show post' do

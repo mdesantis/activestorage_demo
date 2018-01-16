@@ -3,7 +3,6 @@ require 'application_system_test_case'
 class PostsTest < ApplicationSystemTestCase
   setup do
     @admin_auth = { user: admin_username, password: admin_password }
-
     @post = posts(:one)
   end
 
