@@ -1,4 +1,4 @@
-$(document).ready ->
+$(document).on 'turbolinks:load', ->
   $('.delete_attachment').on('ajax:success', (data, status, xhr) ->
     $(@).closest('.attachment').remove()
   ).on('ajax:error', (xhr, status, error) ->
