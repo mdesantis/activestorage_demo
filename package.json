@@ -1,5 +1,5 @@
 {
-  "name": "activestorage-demo",
+  "name": "activestorage_demo",
   "private": true,
   "dependencies": {
     "jquery": "^3.2.1"
