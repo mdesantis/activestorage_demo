@@ -1,0 +1,6 @@
+_fixture:
+  model_class: ActiveStorage::Attachment
+post_gallery_images_one:
+  name: gallery_images
+  blob: one
+  record: with_gallery_images_one (Post)

@@ -1,0 +1,7 @@
+_fixture:
+  model_class: ActiveStorage::Blob
+one:
+  filename: image.jpg
+  key: key
+  byte_size: 123456
+  checksum: abcdef123456

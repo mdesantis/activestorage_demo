@@ -7,3 +7,7 @@ one:
 two:
   title: MyString
   body: MyText
+
+with_gallery_images_one:
+  title: MyString
+  body: MyText
