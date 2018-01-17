@@ -17,4 +17,9 @@
     ul
       = render @post.gallery_images, delete_link: true
     = f.file_field :gallery_images, multiple: true, direct_upload: true
+
+    / Unsaved attachments cache
+    - @post.unsaved_gallery_images_attachments.each do |attachment|
+      = hidden_field_tag 'post[gallery_images][]', attachment.blob.signed_id
+
   .actions = f.submit
