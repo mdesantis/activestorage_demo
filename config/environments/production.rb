@@ -1,6 +1,4 @@
 Rails.application.configure do
-  # Verifies that versions and hashed value of the package contents in the project's package.json
-  config.webpacker.check_yarn_integrity = false
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -64,7 +62,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "activestorage-demo_#{Rails.env}"
+  # config.active_job.queue_name_prefix = "activestorage_demo_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
 
