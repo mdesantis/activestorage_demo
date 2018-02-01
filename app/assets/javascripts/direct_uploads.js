@@ -1,3 +1,7 @@
+addEventListener("direct-uploads:start", event => {
+  console.log("direct-uploads:start")
+})
+
 addEventListener("direct-upload:initialize", event => {
   console.log("direct-upload:initialize")
   const { target, detail } = event
@@ -38,4 +42,8 @@ addEventListener("direct-upload:end", event => {
   const { id } = event.detail
   const element = document.getElementById(`direct-upload-${id}`)
   element.classList.add("direct-upload--complete")
+})
+
+addEventListener("direct-uploads:end", event => {
+  console.log("direct-uploads:end")
 })
