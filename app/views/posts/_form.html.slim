@@ -20,6 +20,6 @@
 
     / Unsaved attachments cache
     - @post.unsaved_gallery_images_attachments.each do |attachment|
-      = hidden_field_tag 'post[gallery_images][]', attachment.blob.signed_id
+      = hidden_field_tag 'post[gallery_images][]', attachment.blob.signed_id, id: nil, class: 'post_gallery_images_attachment', data: { blob_id: attachment.blob.id }
 
   .actions = f.submit
