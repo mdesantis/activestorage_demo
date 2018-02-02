@@ -46,4 +46,6 @@ addEventListener("direct-upload:end", event => {
 
 addEventListener("direct-uploads:end", event => {
   console.log("direct-uploads:end")
+  // Workaround for https://github.com/rails/rails/issues/31860
+  event.target.submit()
 })
