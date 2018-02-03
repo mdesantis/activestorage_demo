@@ -5,3 +5,4 @@ one:
   key: key
   byte_size: 123456
   checksum: abcdef123456
+  content_type: image/jpeg

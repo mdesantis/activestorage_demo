@@ -2,7 +2,6 @@ require 'application_system_test_case'
 
 class PostsFlowTest < ApplicationSystemTestCase
   setup do
-    @admin_auth = { user: admin_username, password: admin_password }
     @post = posts(:one)
   end
 
@@ -12,7 +11,7 @@ class PostsFlowTest < ApplicationSystemTestCase
   end
 
   test 'creating a Post' do
-    visit posts_url(@admin_auth)
+    visit posts_url
     click_on 'New Post'
 
     fill_in 'Body', with: @post.body
@@ -26,7 +25,7 @@ class PostsFlowTest < ApplicationSystemTestCase
   end
 
   test 'updating a Post' do
-    visit posts_url(@admin_auth)
+    visit posts_url
     click_on 'Edit', match: :first
 
     fill_in 'Body', with: @post.body
@@ -36,14 +35,17 @@ class PostsFlowTest < ApplicationSystemTestCase
 
     assert_text 'Post was successfully updated'
     assert_text 'image.jpg', count: 2
+
     click_on 'Back'
   end
 
-  # Broken - See https://github.com/mdesantis/activestorage_demo/issues/1
-  test 'Post gallery images deletion' do
+  test 'deleting Post gallery images' do
     post = posts :with_gallery_images_one
 
-    visit edit_post_url(post, @admin_auth)
+    visit edit_post_url(post)
+
+    assert_text 'image.jpg'
+
     page.accept_confirm do
       click_on '[×]', match: :first
     end
@@ -52,8 +54,26 @@ class PostsFlowTest < ApplicationSystemTestCase
     click_on 'Back'
   end
 
+  test 'deleting unsaved Post gallery images' do
+    visit new_post_url
+
+    attach_file 'post[gallery_images][]', [image_path]
+
+    click_on 'Create Post'
+
+    page.accept_confirm do
+      click_on '[×]', match: :first
+    end
+
+    click_on 'Create Post'
+
+    assert_no_text 'image.jpg'
+
+    click_on 'Back'
+  end
+
   test 'destroying a Post' do
-    visit posts_url(@admin_auth)
+    visit posts_url
     page.accept_confirm do
       click_on 'Destroy', match: :first
     end
